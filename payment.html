@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meliora</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.min.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet"> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style_product.css">
+  <script src="jquery.min.js"></script>
+  <script src="owlcarousel/owl.carousel.min.js"></script>
+  <script src="https://kit.fontawesome.com/fafd950144.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+  <script src="https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="position-absolute start-50 translate-middle-x" href="index.html"><img class="" src="img/logo.png"
+          alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">        
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="about_us.html">ABOUT US</a>
+          </li>
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="service.html">SERVICES</a>
+          </li>
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="products.html">PRODUCTS</a>
+          </li>
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="gallery.html">GALLERY</a>
+          </li>
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="contact.html">CONTACT US</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="banner">
+    <img src="img/abc.jpg" style="object-fit: cover">    
+  </div>
+  
+  <div class="wrapper-1 bg-4" id="app">
+    <div class="card-form">
+      <div class="card-list">
+        <div class="card-item" v-bind:class="{ '-active' : isCardFlipped }">
+          <div class="card-item__side -front">
+            <div class="card-item__focus" v-bind:class="{'-active' : focusElementStyle }" v-bind:style="focusElementStyle" ref="focusElement"></div>
+            <div class="card-item__cover">
+              <img
+              v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
+            </div>
+            
+            <div class="card-item__wrapper">
+              <div class="card-item__top">
+                <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" class="card-item__chip">
+                <div class="card-item__type">
+                  <transition name="slide-fade-up">
+                    <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" v-bind:key="getCardType" alt="" class="card-item__typeImg">
+                  </transition>
+                </div>
+              </div>
+              <label for="cardNumber" class="card-item__number" ref="cardNumber">
+                <template v-if="getCardType === 'amex'">
+                 <span v-for="(n, $index) in amexCardMask" :key="$index">
+                  <transition name="slide-fade-up">
+                    <div
+                      class="card-item__numberItem"
+                      v-if="$index > 4 && $index < 14 && cardNumber.length > $index && n.trim() !== ''"
+                    >*</div>
+                    <div class="card-item__numberItem"
+                      :class="{ '-active' : n.trim() === '' }"
+                      :key="$index" v-else-if="cardNumber.length > $index">
+                      {{cardNumber[$index]}}
+                    </div>
+                    <div
+                      class="card-item__numberItem"
+                      :class="{ '-active' : n.trim() === '' }"
+                      v-else
+                      :key="$index + 1"
+                    >{{n}}</div>
+                  </transition>
+                </span>
+                </template>
+
+                <template v-else>
+                  <span v-for="(n, $index) in otherCardMask" :key="$index">
+                    <transition name="slide-fade-up">
+                      <div
+                        class="card-item__numberItem"
+                        v-if="$index > 4 && $index < 15 && cardNumber.length > $index && n.trim() !== ''"
+                      >*</div>
+                      <div class="card-item__numberItem"
+                        :class="{ '-active' : n.trim() === '' }"
+                        :key="$index" v-else-if="cardNumber.length > $index">
+                        {{cardNumber[$index]}}
+                      </div>
+                      <div
+                        class="card-item__numberItem"
+                        :class="{ '-active' : n.trim() === '' }"
+                        v-else
+                        :key="$index + 1"
+                      >{{n}}</div>
+                    </transition>
+                  </span>
+                </template>
+              </label>
+              <div class="card-item__content">
+                <label for="cardName" class="card-item__info" ref="cardName">
+                  <div class="card-item__holder">Card Holder</div>
+                  <transition name="slide-fade-up">
+                    <div class="card-item__name" v-if="cardName.length" key="1">
+                      <transition-group name="slide-fade-right">
+                        <span class="card-item__nameItem" v-for="(n, $index) in cardName.replace(/\s\s+/g, ' ')" v-if="$index === $index" v-bind:key="$index + 1">{{n}}</span>
+                      </transition-group>
+                    </div>
+                    <div class="card-item__name" v-else key="2">Full Name</div>
+                  </transition>
+                </label>
+                <div class="card-item__date" ref="cardDate">
+                  <label for="cardMonth" class="card-item__dateTitle">Expires</label>
+                  <label for="cardMonth" class="card-item__dateItem">
+                    <transition name="slide-fade-up">
+                      <span v-if="cardMonth" v-bind:key="cardMonth">{{cardMonth}}</span>
+                      <span v-else key="2">MM</span>
+                    </transition>
+                  </label>
+                  /
+                  <label for="cardYear" class="card-item__dateItem">
+                    <transition name="slide-fade-up">
+                      <span v-if="cardYear" v-bind:key="cardYear">{{String(cardYear).slice(2,4)}}</span>
+                      <span v-else key="2">YY</span>
+                    </transition>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item__side -back">
+            <div class="card-item__cover">
+              <img
+              v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
+            </div>
+            <div class="card-item__band"></div>
+            <div class="card-item__cvv">
+                <div class="card-item__cvvTitle">CVV</div>
+                <div class="card-item__cvvBand">
+                  <span v-for="(n, $index) in cardCvv" :key="$index">
+                    *
+                  </span>
+
+              </div>
+                <div class="card-item__type">
+                    <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" class="card-item__typeImg">
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-form__inner">
+        <div class="card-input">
+          <label for="cardNumber" class="card-input__label">Card Number</label>
+          <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask" v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off">
+        </div>
+        <div class="card-input">
+          <label for="cardName" class="card-input__label">Card Holders</label>
+          <input type="text" id="cardName" class="card-input__input" v-model="cardName" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardName" autocomplete="off">
+        </div>
+        <div class="card-form__row">
+          <div class="card-form__col">
+            <div class="card-form__group">
+              <label for="cardMonth" class="card-input__label">Expiration Date</label>
+              <select class="card-input__input -select" id="cardMonth" v-model="cardMonth" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate">
+                <option value="" disabled selected>Month</option>
+                <option v-bind:value="n < 10 ? '0' + n : n" v-for="n in 12" v-bind:disabled="n < minCardMonth" v-bind:key="n">
+                    {{n < 10 ? '0' + n : n}}
+                </option>
+              </select>
+              <select class="card-input__input -select" id="cardYear" v-model="cardYear" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate">
+                <option value="" disabled selected>Year</option>
+                <option v-bind:value="$index + minCardYear" v-for="(n, $index) in 12" v-bind:key="n">
+                    {{$index + minCardYear}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="card-form__col -cvv">
+            <div class="card-input">
+              <label for="cardCvv" class="card-input__label">CVV</label>
+              <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="4" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <a href="success.html"><button class="card-form__button">
+          Submit
+        </button></a>
+      </div>
+    </div>   
+  </div>
+  
+
+
+
+
+
+  <footer class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 col-md-6">
+        <img src="img/logo-footer.png" alt="">
+        <p class="footer-margin-left">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>        
+      </div>
+      <div class="col-lg-1 col-sm-12 col-md-6">
+        <h6>Explore</h6>
+        <p>Features</p>
+        <p>Blog</p>        
+      </div>      
+      <div class="col-lg-1 col-sm-12 col-md-6">
+        <h6>Company</h6>
+        <p>About us</p>
+        <p>Contact</p>
+        <p>Support</p>     
+      </div>
+      <div class="col-lg-2 col-sm-12 col-md-6">
+        <h6>Community</h6>
+        <p>Featured Artists</p>
+        <p>Events</p>
+      </div>
+      <div class="col-lg-1 col-sm-12 col-md-6">
+        <h6>Follow us</h6>
+        <div class="ff">
+          <a href="https://vi-vn.facebook.com/"> <i class="fa-brands fa-square-facebook"></i></a>
+          <a href="https://twitter.com/"><i class="fa-brands fa-square-twitter"></i></a>
+          <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+        </div>   
+      </div>
+    </div>
+    <hr class="container-fluid hr-lol">
+    <p class="text-center">© 2022 Meliora. All rights reserved</p>
+  </footer>
+  <script src="main.js"></script>  
+  <script src="bootstrap.bundle.js"></script>
+  
+  
+  <script>
+    var nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset > 100) {
+        nav.classList.add('bg-dark', 'shadow');
+      } else {
+        nav.classList.remove('bg-dark', 'shadow');
+      }
+    });    
+  </script>
+</body>
+
+</html>

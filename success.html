@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meliora</title>
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="owlcarousel/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="owlcarousel/assets/owl.theme.default.min.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">  
+  <script src="jquery.min.js"></script>
+  <script src="owlcarousel/owl.carousel.min.js"></script>
+  <script src="https://kit.fontawesome.com/fafd950144.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="position-absolute start-50 translate-middle-x" href="index.html"><img class="" src="img/logo.png"
+          alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">        
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="about_us.html">ABOUT US</a>
+          </li>
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="service.html">SERVICES</a>
+          </li>
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="products.html">PRODUCTS</a>
+          </li>
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="gallery.html">GALLERY</a>
+          </li>
+          <li class="nav-item me-lg-4">
+            <a class="nav-link" href="contact.html">CONTACT US</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="banner">
+    <img src="img/ffi.jpg" style="object-fit: cover">    
+</div>
+  <div class="container succ">
+
+    <h3 class="display-4 text-center">Thank you for choosing Meliora</h3>
+    <h1 class="text-center hehe animate__animated  animate__zoomIn"><i class="fa-solid fa-check"></i></h1>
+    <h6 class="text-center">Your action has been processed succcessfully!</h6>
+
+    <a class="hero-btn-5 start-50 translate-middle-x mt-lg-5" href="index.html"><span>Back to homepage</span></a>
+    
+  </div>
+  <footer class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6 col-sm-12 col-md-6">
+        <img src="img/logo-footer.png" alt="">
+        <p class="footer-margin-left">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>        
+      </div>
+      <div class="col-lg-1 col-sm-12 col-md-6">
+        <h6>Explore</h6>
+        <p>Features</p>
+        <p>Blog</p>        
+      </div>      
+      <div class="col-lg-1 col-sm-12 col-md-6">
+        <h6>Company</h6>
+        <p>About us</p>
+        <p>Contact</p>
+        <p>Support</p>     
+      </div>
+      <div class="col-lg-2 col-sm-12 col-md-6">
+        <h6>Community</h6>
+        <p>Featured Artists</p>
+        <p>Events</p>
+      </div>
+      <div class="col-lg-1 col-sm-12 col-md-6">
+        <h6>Follow us</h6>
+        <div class="ff">
+          <a href="https://vi-vn.facebook.com/"> <i class="fa-brands fa-square-facebook"></i></a>
+          <a href="https://twitter.com/"><i class="fa-brands fa-square-twitter"></i></a>
+          <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+          <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+        </div>   
+      </div>
+    </div>
+    <hr class="container-fluid hr-lol">
+    <p class="text-center">© 2022 Meliora. All rights reserved</p>
+  </footer>
+  <script src="main.js"></script>  
+  <script src="bootstrap.bundle.js"></script>
+  
+  
+  <script>
+    var nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', function () {
+      if (window.pageYOffset > 100) {
+        nav.classList.add('bg-dark', 'shadow');
+      } else {
+        nav.classList.remove('bg-dark', 'shadow');
+      }
+    });    
+  </script>
+</body>
+
+</html>
